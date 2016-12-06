@@ -3,6 +3,7 @@ class LeagueCLI
   def self.greeting
     puts "Welcome to the League of Legends Champion info tool. Here you can find information about any League of Legends Champion."
     puts "Please input a champion name to get started, or type list to get a list of all available champions. Type exit to exit!"
+    puts ""
   end
 
   def self.get_search_item
@@ -12,9 +13,11 @@ class LeagueCLI
   def self.start(input)
     choice = "hi"
     while choice != "back"
+    puts ""
     puts "What information would you like to obtain? You can choose from:"
-    puts "Lore, Abilities, Tips, and Skins"
+    puts "Lore, Abilities, Tips, Guide Recommendations and Skins"
     puts "You can also type \"back\" to go to the main menu."
+    puts ""
     choice = gets.downcase.strip
       if choice == "lore" 
         Ascii.lore
@@ -31,6 +34,11 @@ class LeagueCLI
       elsif choice == "abilities"
         Ascii.abilities
         LeagueInfo.get_champion_abilities(input) 
+        puts ""
+      elsif choice == "guide recommendations"
+        Ascii.summoner_spells
+        puts "The recommended summoner spells from the highest rated MobaFire guide are:"
+        Scrape.guide_recommendations(input)
         puts ""
       elsif choice != "back"
         puts "Type \"back\" to go to the main menu, or pick another set of information to check"

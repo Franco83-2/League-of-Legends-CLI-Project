@@ -57,7 +57,6 @@ class LeagueInfo
       data["allytips"].each.with_index(1) {|tip, index| puts "#{index}. #{tip}"}
       puts ""
       puts "                 Tips for Enemies:"
-      #binding.pry
       puts ""
       data["enemytips"].each.with_index(1) {|tip, index| puts "#{index}. #{tip}"}
     end
