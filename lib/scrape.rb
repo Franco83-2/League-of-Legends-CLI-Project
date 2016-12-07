@@ -1,3 +1,6 @@
+require 'nokogiri'
+require 'pry'
+require 'open-uri'
 class Scrape
   SPELLS = ["Barrier","Clairvoyance","Clarity","Cleanse","Exhaust","Flash","Fortify","Garrison","Ghost","Heal","Ignite","Mark/Dash","Promote","Rally","Revive","Smite","Surge","Teleport"]
   
@@ -47,8 +50,11 @@ class Scrape
 
   def self.guide_recommendations(champion)
     data = self.guide_info(champion)
-    summs = self.summoner_spells(data)
-    puts summs
+    puts "Summoner Spells:"
+    puts self.summoner_spells(data)
+    puts ""
+    puts "Rune Recommendations:"
+    puts self.runes(data)
   end
 
     def self.summoner_spells(data)
@@ -61,6 +67,11 @@ class Scrape
     end.flatten.compact
   end
 
+  def self.runes(data)
+    data.css(".rune-wrap a").map do |rune|
+    rune.css(".rune-num").text + " " + rune.css(".rune-title").text
+    end
+  end
+
 end
 
-#Scrape.guide_recommendations("chogath")

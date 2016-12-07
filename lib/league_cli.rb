@@ -37,7 +37,7 @@ class LeagueCLI
         puts ""
       elsif choice == "guide recommendations"
         Ascii.summoner_spells
-        puts "The recommended summoner spells from the highest rated MobaFire guide are:"
+        puts "Recommended information from the highest rated MobaFire guide is:"
         Scrape.guide_recommendations(input)
         puts ""
       elsif choice != "back"
